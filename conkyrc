@@ -1,0 +1,100 @@
+# Conky, a system monitor, based on torsmo
+#
+# Any original torsmo code is licensed under the BSD license
+#
+# All code written since the fork of torsmo is licensed under the GPL
+#
+# Please see COPYING for details
+#
+# Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+# Copyright (c) 2005-2010 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+# All rights reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+alignment top_right
+background yes
+border_width 1
+cpu_avg_samples 2
+default_color cornflowerblue
+default_outline_color white
+default_shade_color white
+double_buffer yes
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+gap_x 25
+gap_y 15 
+
+max_port_monitor_connections 64
+max_specials 512
+max_user_text 16384
+minimum_size  
+maximum_width 340
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+wm_class_name Conky
+own_window_colour black
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_transparent yes
+own_window_type normal
+own_window yes
+stippled_borders 2
+update_interval 2
+uppercase no
+use_spacer yes
+use_xft yes
+xftalpha 0.8
+xftfont  Bitstream Vera Sans Mono:size=9
+
+TEXT
+${image /home/johny/Pictures/logo.png -p 12,0 -s 300x100}
+${voffset 100}${alignc 35}${font MS:size=30}${time %H:%M}${font}
+${alignc}${time %a %d %b %Y}
+
+${alignc}${exec whoami}@${nodename}
+${alignc}All rights reserved for ${nodename}
+
+SYSTEM ${hr 4}
+
+${color #0077ff}Uptime:${alignr}$color $uptime
+${color #0077ff}Kernel:${alignr}$kernel
+${color #0077ff}Processor:${alignr}Intel i5 @2.6GHz
+${color #0077ff}CPU Usage:$color $cpu% ${cpubar 4}
+${color #0077ff}${cpugraph 0 24,155 104E8B 0077ff} $alignr${color #0077ff}${diskiograph 24,155 104E8B 0077ff}
+${color #0077ff}Processes:$color $processes  ${color #0077ff}${alignr}Running:$color $running_processes
+${color #0077ff}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
+
+NETWORKING ${hr 4}
+
+Down:$color ${downspeed wlp18s0} ${color #0077ff}${alignr}Up:$color ${upspeed wlp18s0}
+${color #0077ff}${downspeedgraph wlp18s0 24,155 0077ff} $alignr${color #0077ff}${upspeedgraph wlp18s0 24,155 0077ff}
+
+FILE SYSTEM ${hr 4}
+
+ ${color #0077ff}/          $color${fs_used /}/${fs_size /}${alignr}${color #0077ff}${fs_bar 5,120 /}
+ ${color #0077ff}/home      $color${fs_used /home}/${fs_size /home}${alignr}${color #0077ff}${fs_bar 5,120 /home}
+
+PROCESSES ${hr 4}
+
+${color #0077ff}Name              PID     CPU%   MEM%
+$color ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+$color ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+$color ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+$color ${top name 4} ${top pid 3} ${top cpu 4} ${top mem 4}
+$color ${top name 5} ${top pid 3} ${top cpu 5} ${top mem 5}
+
+${hr 4}
